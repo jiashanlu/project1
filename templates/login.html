@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <!-- LOGIN FORM -->
+<div class="text-center" style="padding:50px 0">
+	<!-- Main Form -->
+	{% if message %}
+		<p class=message><strong>Message:</strong> {{ message }}
+	{% endif %}
+	{% if session['logged_in'] %}
+		<p>{{id.pseudo}} you're logged in already!</p>
+	{% else %}
+	<div class="login-form-1">
+		<form action="{{ url_for('login') }}" method="post" class="text-left">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<form class="form-group">
+						<label for="lg_username" class="sr-only">Username</label>
+						<input type="text" class="form-control" id="lg_username" name="username" placeholder="username">
+					</form>
+					<div class="form-group">
+						<label for="lg_password" class="sr-only">Password</label>
+						<input type="password" class="form-control" id="lg_password" name="password" placeholder="password">
+					</div>
+				</div>
+				<button type="submit" class="fas fa-sign-in-alt"></button>
+			</div>
+			<div class="etc-login-form">
+				<p>new user? <a href="{{ url_for('register') }}">create new account</a></p>
+			</div>
+		</form>
+	</div>
+	{% endif %}
+	<!-- end:Main Form -->
+</div>
+{% endblock %}

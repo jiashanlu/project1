@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/custom.css')}}">
+      <title>Jiashanlu Library</title>
+    </head>
+    <body>
+<!--Navigation bar-->
+      <nav class="container-fluid sticky-top" id="navigation">
+        <div class="row">
+          <div class="col12">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('search') }}">Search</a>
+                </li>
+              </ul>
+          </div>
+          <div class="col text-right ">
+            <p class="text-primary">JiashanLu Library</p>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </div>
+        </div>
+      </nav>
+<!--Navigation bar end-->
+<!--Header-->
+      <div class="container-fluid">
+        <div class="row justify-content-center align-items-center" id="header">
+          <div class="col">
+            <article>
+              <img src="{{url_for('static',filename='images/book2.png')}}"style="width: 30%; height: 30%" class="img-fluid" alt="Responsive image">
+            </article>
+          </div>
+          <div class="col">
+            <h3 class="text-center text-secondary">The best book are reviewed here!</h3>
+          </div>
+        </div>
+      </div>
+<!--Header-->
+{% block body %}
+{% endblock %}
+      <footer class= fixed-bottom>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <p>By JiashanLu</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </body>
+</html>

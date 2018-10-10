@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row" id="bibio">
+    <div class="col">
+      <article>
+        <h3>Book review app</h3>
+        <p>Let's try something here!</p>
+        <img src="{{url_for('static',filename='images/book1.jpg')}}" class="img-fluid" alt="Responsive image">
+        <hr>
+      </article>
+    </div>
+  </div>
+</div>
+{% endblock %}

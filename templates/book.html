@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if not session['logged_in'] %}
+<h5>please <a href="{{ url_for('login') }}">Login</a> first</h5>
+{% else %}
+<br>
+<div class="container">
+	<div class="row">
+      <div class="col-md-6">
+				<article class="">
+					<p>{{book.title}} has been written by {{book.author}} in the year {{book.year}}</p>
+					<p>The ISBN number is {{book.isbn}}</p>
+				</article>
+				<form class="form-group" action="{{ url_for('book',book_id=book.id) }}" method="post">
+					<textarea type="text" rows ="5" class="form-control" name="review" placeholder="your review"></textarea>
+							<div class="rating">
+      					<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Meh">5 stars</label>
+      					<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Kinda bad">4 stars</label>
+      					<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Kinda bad">3 stars</label>
+      					<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Sucks big tim">2 stars</label>
+      					<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+							</div>
+							<br><button type="submit" class="fas fa-sign-in-alt"></button>
+				</form>
+      </div>
+			<div class="col-md-6">
+				<div class="thumbnail">
+				  	<div class="caption">
+				    	<h4 class="text-center">Your review :</h4>
+							{% if my_review.review %}
+				      	<ul><li>{{ my_review.review }} with a score of {{ my_review.rating }}/5</li></ul>
+							{% else %}
+								<p>You can submit your review!</p>
+							{% endif %}
+							<h4 class="text-center">All reviews :</h4>
+							{% if not reviews %}
+								<p>not yet reviewed by anybody!</p>
+							{% else %}
+								<ul>
+								{% for r in reviews %}
+									<li>Writen by {{r.pseudo}} with a score of {{ r.rating }}/5</li>
+									<p>{{r.review}}</p>
+								{% endfor %}
+								</ul>
+							{% endif %}
+								<h4 class="text-center">Goodreads data:</h4>
+								{% if res %}
+					      <ul>
+									<li>Number of reviews : {{ res['books'][0].work_ratings_count }}</li>
+									<li>Average rating : {{ res['books'][0].average_rating }}/5</li>
+								</ul>
+								{% endif %}
+						</div>
+				</div>
+			</div>
+	</div>
+</div>
+
+{% endif %}
+{% endblock %}

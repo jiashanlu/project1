@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if not session['logged_in'] %}
+<h5>please <a href="{{ url_for('login') }}">Login</a> first</h5>
+
+{% else %}
+<br>
+<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+    		<h2>What are you looking at?</h2>
+            <div id="cutom-search-input?">
+                <form action ="{{ url_for('search') }}" method="post" class="input-group col-md-12">
+                    <input type="text" name="search" class="form-control input-lg" placeholder="your input" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>
+<br><br><br>
+<div class="container">
+<ul>
+    {% for s in searched %}
+        <li><a href="{{ url_for('book',book_id=s.id) }}">{{ s.title }}, written by {{ s.author }} in {{ s.year }}; ref {{ s.isbn }}</a></li>
+    {% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endblock %}
